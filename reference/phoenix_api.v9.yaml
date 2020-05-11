@@ -484,7 +484,7 @@ paths:
         name: tracker_id
         in: path
         required: true
-  '/user/{user_guid}/{event_type}/{event_id}/rate':
+  '/user/{user_guid}/{type}/{id}/rate':
     post:
       summary: Create user event rating
       tags:
@@ -493,6 +493,30 @@ paths:
         '200':
           description: OK
       operationId: nine.event.rate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - properties:
+                    value:
+                      type: string
+                      enum:
+                        - favour
+                        - unfavour
+                        - delete
+                        - undelete
+                        - neutral
+                - properties:
+                    action:
+                      type: string
+                      enum:
+                        - rate
+                    score:
+                      type: integer
+                      minimum: 1
+                      maximum: 5
+              type: object
     parameters:
       - schema:
           type: string
@@ -502,16 +526,16 @@ paths:
         required: true
       - schema:
           type: string
-          pattern: '^([A-Fa-f0-9]){24}$'
-        name: event_id
+          enum:
+            - topic
+            - genre
+        name: type
         in: path
         required: true
       - schema:
           type: string
-          enum:
-            - event
-            - odevent
-        name: event_type
+          pattern: '^([A-Fa-f0-9]){24}$'
+        name: id
         in: path
         required: true
   '/{event_type}/{event_id}/trailer':
