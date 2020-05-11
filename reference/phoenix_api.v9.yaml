@@ -253,6 +253,8 @@ paths:
             type: string
           in: query
           name: password
+      security:
+        - X-AppKey: []
     post:
       summary: Register user
       tags: []
@@ -274,6 +276,8 @@ paths:
                 - email
                 - password
         description: ''
+      security:
+        - X-AppKey: []
     put:
       summary: Update user
       operationId: nine.user.update
