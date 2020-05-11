@@ -22,7 +22,7 @@ paths:
         '200':
           description: OK
       operationId: get-5d0557ae-c86e-4798-8c2b-849d33cc382e
- /user/{user_id}/tracker/{tracker_id}:
+ /user/{user_guid}/tracker/{tracker_id}:
     post:
       summary: Your POST endpoint
       tags: []
@@ -76,7 +76,7 @@ paths:
         '200':
           description: OK
       operationId: get-96ef61dc-14e1-4c6d-b82b-8df6cb1e1248
- /{type}/{event_id}/gallery:
+ /{event_type}/{event_id}/gallery:
     get:
       summary: Your GET endpoint
       tags: []
@@ -84,7 +84,7 @@ paths:
         '200':
           description: OK
       operationId: get-e798b69f-50cb-40b5-a6d6-a6ed3656ffe8
- /{type}/{event_id}/info:
+ /{event_type}/{event_id}/info:
     get:
       summary: Your GET endpoint
       tags: []
@@ -92,7 +92,7 @@ paths:
         '200':
           description: OK
       operationId: get-2edd8aa8-0958-49b8-a730-679a4ae1b368
- /{type}/{event_id}/trailer:
+ /{event_type}/{event_id}/trailer:
     get:
       summary: Your GET endpoint
       tags: []
@@ -100,7 +100,7 @@ paths:
         '200':
           description: OK
       operationId: get-8ba31d55-f6d1-4964-ae80-9f5012e5c5a8
- /user/{user_id}/trackers:
+ /user/{user_guid}/trackers:
     get:
       summary: Your GET endpoint
       tags: []
@@ -108,7 +108,7 @@ paths:
         '200':
           description: OK
       operationId: get-47ae7b98-a4b6-4066-ab07-561b189e41f0
- /user/{user_id}/preferences:
+ /user/{user_guid}/preferences:
     get:
       summary: Your GET endpoint
       tags: []
@@ -123,7 +123,7 @@ paths:
         '200':
           description: OK
       operationId: post-4201ec0c-9abc-4624-87eb-99837f12e266      
- /user/{user_id}/ratings:
+ /user/{user_guid}/ratings:
     get:
       summary: Your GET endpoint
       tags: []
@@ -131,7 +131,7 @@ paths:
         '200':
           description: OK
       operationId: get-bd334e2a-8013-4219-97ab-96cf8af5654d
- /user/{user_id}/tastes:
+ /user/{user_guid}/tastes:
     get:
       summary: Your GET endpoint
       tags: []
@@ -161,7 +161,7 @@ paths:
         '200':
           description: OK
       operationId: post-0dd39fd6-92cf-42d6-9e36-958ec3c000e3
- /user/{user_id}/activity:
+ /user/{user_guid}/activity:
     post:
       summary: Your POST endpoint
       tags: []
@@ -191,7 +191,7 @@ paths:
         '200':
           description: OK
       operationId: update-90a9a810-e560-41fc-8481-a74f25987c2c
- /user/{user_id}/reset/{object}:
+ /user/{user_guid}/reset/{object}:
     get:
       summary: Your GET endpoint
       tags: []
@@ -199,7 +199,7 @@ paths:
         '200':
           description: OK
       operationId: get-747dda51-1167-4bef-ac53-c894394d0b51
- /user/{user_id}/update:
+ /user/{user_guid}/update:
     put:
       summary: Your PUT endpoint
       tags: []
@@ -207,7 +207,7 @@ paths:
         '200':
           description: OK
       operationId: put-380f61d4-2b93-40b0-9826-78f35cf3ad7f
- /user/{user_id}/logout:
+ /user/{user_guid}/logout:
     get:
       summary: Your GET endpoint
       tags: []
@@ -215,7 +215,7 @@ paths:
         '200':
           description: OK
       operationId: get-cccd00e8-8bc9-4cf0-9852-7ed569abe0fe
- /user/{user_id}/{type}/{id}/rate:
+ /user/{user_guid}/{event_type}/{id}/rate:
     post:
       summary: Your POST endpoint
       tags: []
