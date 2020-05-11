@@ -259,7 +259,8 @@ paths:
         - X-AppKey: []
     post:
       summary: Register user
-      tags: []
+      tags:
+        - User Management
       responses:
         '201':
           description: Created
@@ -302,6 +303,8 @@ paths:
                 - email
                 - password
                 - old_password
+      tags:
+        - User Management
   '/user/{user_guid}/logout':
     get:
       summary: Logout user
@@ -457,14 +460,16 @@ paths:
   '/user/{user_guid}/tracker/{tracker_id}':
     post:
       summary: Create user tracker
-      tags: []
+      tags:
+        - Tracker Management
       responses:
         '200':
           description: OK
       operationId: post-dd62e6cb-ef17-4f69-8b74-e1b60abf3e18
     delete:
       summary: Delete user tracker
-      tags: []
+      tags:
+        - Tracker Management
       responses:
         '200':
           description: OK
