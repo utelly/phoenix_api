@@ -208,6 +208,8 @@ paths:
         '200':
           description: OK
       operationId: nine.user.password.reset_init
+      security:
+        - X-AppKey: []
     post:
       summary: Reset password confirm
       tags: []
