@@ -212,7 +212,8 @@ paths:
         - X-AppKey: []
     post:
       summary: Reset password confirm
-      tags: []
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
@@ -390,7 +391,8 @@ paths:
       operationId: get-c85e159a-996e-43b9-94f7-1eb2d7c98a45
     post:
       summary: Set user tastes
-      tags: []
+      tags:
+        - Tastes Management
       responses:
         '200':
           description: OK
@@ -429,7 +431,8 @@ paths:
       operationId: nine.user.preference.get
     post:
       summary: Set user preferences
-      tags: []
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
