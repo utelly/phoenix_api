@@ -1,0 +1,236 @@
+openapi: 3.0.0
+info:
+  title: phoenix_api
+  version: '9'
+servers:
+  - url: 'https://api.utelly.com/phoenix/9'
+    description: prod
+paths:
+ /genres:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-68bd0c9d-3261-49e9-b464-969763fbf444
+ /locations:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-5d0557ae-c86e-4798-8c2b-849d33cc382e
+ /user/{user_id}/tracker/{tracker_id}:
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-dd62e6cb-ef17-4f69-8b74-e1b60abf3e18
+    delete:
+      summary: Your DELETE endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-1efc9755-42d2-4be4-b754-237ff2bfb980
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-f47e45c4-8c9c-4603-b778-3e06e03c6e6c      
+ /search:
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-2aa4db27-aba6-4b87-96ae-9b34f7ee9404
+ /collection/{collection_id}/info:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-e82a04e7-18a8-4ca6-8e00-baf4afac6f0e
+ /lookup:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-e66cfdb6-51e1-4c68-90ef-60a031eb3150
+ /idlookup:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-96ef61dc-14e1-4c6d-b82b-8df6cb1e1248
+ /{type}/{event_id}/gallery:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-e798b69f-50cb-40b5-a6d6-a6ed3656ffe8
+ /{type}/{event_id}/info:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-2edd8aa8-0958-49b8-a730-679a4ae1b368
+ /{type}/{event_id}/trailer:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-8ba31d55-f6d1-4964-ae80-9f5012e5c5a8
+ /user/{user_id}/trackers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-47ae7b98-a4b6-4066-ab07-561b189e41f0
+ /user/{user_id}/preferences:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-938d7f6d-ce64-4c6e-90a4-446434938e81
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-4201ec0c-9abc-4624-87eb-99837f12e266      
+ /user/{user_id}/ratings:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-bd334e2a-8013-4219-97ab-96cf8af5654d
+ /user/{user_id}/tastes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-c85e159a-996e-43b9-94f7-1eb2d7c98a45
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-d322c392-f261-4c3f-bfdc-673f6a9f465b      
+ /user/{email}/reset/password:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-3830adf1-a575-42e9-9ce3-aff317e195a3
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-0dd39fd6-92cf-42d6-9e36-958ec3c000e3
+ /user/{user_id}/activity:
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-e706298b-8e31-45fc-8fbc-ba3f96b86b51
+ /user:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-de125918-2c39-4700-9a17-a452d02fc804
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-ef01c7f8-07f1-47ea-a5d8-eea32794ca9c
+    update:
+      summary: Your UPDATE endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: update-90a9a810-e560-41fc-8481-a74f25987c2c
+ /user/{user_id}/reset/{object}:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-747dda51-1167-4bef-ac53-c894394d0b51
+ /user/{user_id}/update:
+    put:
+      summary: Your PUT endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: put-380f61d4-2b93-40b0-9826-78f35cf3ad7f
+ /user/{user_id}/logout:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-cccd00e8-8bc9-4cf0-9852-7ed569abe0fe
+ /user/{user_id}/{type}/{id}/rate:
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-7cace0c2-3344-4f7e-84cf-038ab9f7641c
+components:
+  schemas: {}
+  securitySchemes:
+    Autorization:
+      name: Autorization
+      type: apiKey
+      in: header
+    X-AppKey:
+      name: X-AppKey
+      type: apiKey
+      in: header
