@@ -8,32 +8,36 @@ servers:
 paths:
   /genres:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get genres
+      tags:
+        - Genre Management
       responses:
         '200':
           description: OK
       operationId: get-68bd0c9d-3261-49e9-b464-969763fbf444
   /locations:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get locations
+      tags:
+        - Location Management
       responses:
         '200':
           description: OK
       operationId: get-5d0557ae-c86e-4798-8c2b-849d33cc382e
   /search:
     post:
-      summary: Your POST endpoint
-      tags: []
+      summary: Search
+      tags:
+        - Search Management
       responses:
         '200':
           description: OK
       operationId: post-2aa4db27-aba6-4b87-96ae-9b34f7ee9404
   '/collection/{collection_id}/info':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get collection info
+      tags:
+        - Collection Management
       responses:
         '200':
           description: OK
@@ -41,29 +45,38 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: collection_id
         in: path
         required: true
   /lookup:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Lookup by term
+      tags:
+        - Lookup Management
       responses:
         '200':
           description: OK
       operationId: get-e66cfdb6-51e1-4c68-90ef-60a031eb3150
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: term
   /idlookup:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Lookup by id
+      tags:
+        - Lookup Management
       responses:
         '200':
           description: OK
       operationId: get-96ef61dc-14e1-4c6d-b82b-8df6cb1e1248
   '/user/{email}/reset/password':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Reset password init
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
@@ -83,51 +96,48 @@ paths:
         required: true
   /user:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Login user
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
       operationId: get-de125918-2c39-4700-9a17-a452d02fc804
     post:
-      summary: Your POST endpoint
+      summary: Register user
       tags: []
       responses:
         '200':
           description: OK
       operationId: post-ef01c7f8-07f1-47ea-a5d8-eea32794ca9c
+    put:
+      summary: Update user
+      operationId: put-user
+      responses:
+        '200':
+          description: OK
   '/user/{user_guid}/logout':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Logout user
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
       operationId: get-cccd00e8-8bc9-4cf0-9852-7ed569abe0fe
+      description: ''
     parameters:
       - schema:
           type: string
-        name: user_guid
-        in: path
-        required: true
-  '/user/{user_guid}/update':
-    put:
-      summary: Your PUT endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: put-380f61d4-2b93-40b0-9826-78f35cf3ad7f
-    parameters:
-      - schema:
-          type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
   '/user/{user_guid}/reset/{object}':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Reset user
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
@@ -135,6 +145,7 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
@@ -145,8 +156,9 @@ paths:
         required: true
   '/user/{user_guid}/activity':
     post:
-      summary: Your POST endpoint
-      tags: []
+      summary: Create a new activity
+      tags:
+        - Activity Management
       responses:
         '200':
           description: OK
@@ -154,19 +166,21 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
   '/user/{user_guid}/tastes':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get user tastes
+      tags:
+        - Tastes Management
       responses:
         '200':
           description: OK
       operationId: get-c85e159a-996e-43b9-94f7-1eb2d7c98a45
     post:
-      summary: Your POST endpoint
+      summary: Set user tastes
       tags: []
       responses:
         '200':
@@ -175,33 +189,37 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
   '/user/{user_guid}/ratings':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get user ratings
       responses:
         '200':
           description: OK
       operationId: get-bd334e2a-8013-4219-97ab-96cf8af5654d
+      tags:
+        - Rating Management
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
   '/user/{user_guid}/preferences':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get user preferences
+      tags:
+        - User Management
       responses:
         '200':
           description: OK
       operationId: get-938d7f6d-ce64-4c6e-90a4-446434938e81
     post:
-      summary: Your POST endpoint
+      summary: Set user preferences
       tags: []
       responses:
         '200':
@@ -210,13 +228,15 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
   '/user/{user_guid}/trackers':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get user trackers
+      tags:
+        - Tracker Management
       responses:
         '200':
           description: OK
@@ -224,27 +244,29 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
   '/user/{user_guid}/tracker/{tracker_id}':
     post:
-      summary: Your POST endpoint
+      summary: Create user tracker
       tags: []
       responses:
         '200':
           description: OK
       operationId: post-dd62e6cb-ef17-4f69-8b74-e1b60abf3e18
     delete:
-      summary: Your DELETE endpoint
+      summary: Delete user tracker
       tags: []
       responses:
         '200':
           description: OK
       operationId: delete-1efc9755-42d2-4be4-b754-237ff2bfb980
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get user tracker
+      tags:
+        - Tracker Management
       responses:
         '200':
           description: OK
@@ -252,18 +274,21 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: tracker_id
         in: path
         required: true
   '/user/{user_guid}/{event_type}/{event_id}/rate':
     post:
-      summary: Your POST endpoint
-      tags: []
+      summary: Create user event rating
+      tags:
+        - Rating Management
       responses:
         '200':
           description: OK
@@ -271,23 +296,29 @@ paths:
     parameters:
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: user_guid
         in: path
         required: true
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: event_id
         in: path
         required: true
       - schema:
           type: string
+          enum:
+            - event
+            - odevent
         name: event_type
         in: path
         required: true
   '/{event_type}/{event_id}/trailer':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get event trailer
+      tags:
+        - Event Management
       responses:
         '200':
           description: OK
@@ -295,18 +326,23 @@ paths:
     parameters:
       - schema:
           type: string
+          enum:
+            - event
+            - odevent
         name: event_type
         in: path
         required: true
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: event_id
         in: path
         required: true
   '/{event_type}/{event_id}/info':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get event details
+      tags:
+        - Event Management
       responses:
         '200':
           description: OK
@@ -314,18 +350,23 @@ paths:
     parameters:
       - schema:
           type: string
+          enum:
+            - event
+            - odevent
         name: event_type
         in: path
         required: true
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: event_id
         in: path
         required: true
   '/{event_type}/{event_id}/gallery':
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get event gallery
+      tags:
+        - Event Management
       responses:
         '200':
           description: OK
@@ -333,11 +374,15 @@ paths:
     parameters:
       - schema:
           type: string
+          enum:
+            - event
+            - odevent
         name: event_type
         in: path
         required: true
       - schema:
           type: string
+          pattern: '^([A-Fa-f0-9]){24}$'
         name: event_id
         in: path
         required: true
