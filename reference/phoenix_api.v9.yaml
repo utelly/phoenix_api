@@ -14,16 +14,32 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-68bd0c9d-3261-49e9-b464-969763fbf444
-  /locations:
+      operationId: nine.genres
+      description: ''
+      parameters:
+        - schema:
+            type: array
+            items:
+              type: string
+          in: query
+          name: id
+          style: form
+  '/user/{user_guid}/locations':
     get:
-      summary: Get locations
+      summary: Get user locations
       tags:
         - Location Management
       responses:
         '200':
           description: OK
-      operationId: get-5d0557ae-c86e-4798-8c2b-849d33cc382e
+      operationId: nine.locations
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: user_guid
+        in: path
+        required: true
   /search:
     post:
       summary: Search
@@ -33,6 +49,104 @@ paths:
         '200':
           description: OK
       operationId: post-2aa4db27-aba6-4b87-96ae-9b34f7ee9404
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - event
+                    - odevent
+                user:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    locations.id:
+                      type: array
+                      items:
+                        type: string
+                    content_rating:
+                      type: array
+                      items:
+                        type: string
+                    topic.metadata.release_date:
+                      type: array
+                      items:
+                        type: string
+                        pattern: "^\\[([0-9]+|\\*) TO ([0-9]+|\\*)\\]$"
+                    q:
+                      type: string
+                    method:
+                      oneOf:
+                        - properties:
+                            '':
+                              type: string
+                              enum:
+                                - any
+                        - properties:
+                            name:
+                              type: string
+                              enum:
+                                - boxed
+                            args:
+                              type: object
+                              properties:
+                                when:
+                                  type: string
+                                  format: date-time
+                                min_left:
+                                  type: integer
+                                starts_in:
+                                  type: integer
+                        - properties:
+                            name:
+                              type: string
+                              enum:
+                                - spot
+                            args:
+                              type: object
+                              properties:
+                                when:
+                                  type: string
+                                  format: date-time
+                        - properties:
+                            name:
+                              type: string
+                              enum:
+                                - slice
+                            args:
+                              type: object
+                              properties:
+                                when:
+                                  type: string
+                                  format: date-time
+                                starts_in:
+                                  type: integer
+                      type: object
+                    topic.actors.name:
+                      type: array
+                      items:
+                        type: string
+                    topic.directors.name:
+                      type: array
+                      items:
+                        type: string
+                    topic.genre_ids:
+                      type: array
+                      items:
+                        type: string
+                order:
+                  type: string
+                  enum:
+                    - relevancy
+                    - popular
+                    - recommend
+                    - rating
+                    - channels
   '/collection/{collection_id}/info':
     get:
       summary: Get collection info
@@ -41,7 +155,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-e82a04e7-18a8-4ca6-8e00-baf4afac6f0e
+      operationId: nine.collection.info
     parameters:
       - schema:
           type: string
@@ -72,6 +186,19 @@ paths:
         '200':
           description: OK
       operationId: get-96ef61dc-14e1-4c6d-b82b-8df6cb1e1248
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - imdb
+              - tmdb
+              - wiki_data
+          in: query
+          name: source_id
+        - schema:
+            type: string
+          in: query
+          name: source
   '/user/{email}/reset/password':
     get:
       summary: Reset password init
@@ -80,14 +207,27 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-3830adf1-a575-42e9-9ce3-aff317e195a3
+      operationId: nine.user.password.reset_init
     post:
-      summary: Your POST endpoint
+      summary: Reset password confirm
       tags: []
       responses:
         '200':
           description: OK
-      operationId: post-0dd39fd6-92cf-42d6-9e36-958ec3c000e3
+      operationId: nine.user.password.reset_complete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+              required:
+                - token
+                - password
     parameters:
       - schema:
           type: string
@@ -102,20 +242,60 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-de125918-2c39-4700-9a17-a452d02fc804
+      operationId: nine.user.login
+      requestBody: {}
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: email
+        - schema:
+            type: string
+          in: query
+          name: password
     post:
       summary: Register user
       tags: []
       responses:
-        '200':
-          description: OK
-      operationId: post-ef01c7f8-07f1-47ea-a5d8-eea32794ca9c
+        '201':
+          description: Created
+      operationId: nine.user.register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+        description: ''
     put:
       summary: Update user
-      operationId: put-user
+      operationId: nine.user.update
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                old_password:
+                  type: string
+              required:
+                - email
+                - password
+                - old_password
   '/user/{user_guid}/logout':
     get:
       summary: Logout user
@@ -124,7 +304,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-cccd00e8-8bc9-4cf0-9852-7ed569abe0fe
+      operationId: nine.user.logout
       description: ''
     parameters:
       - schema:
@@ -141,7 +321,8 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-747dda51-1167-4bef-ac53-c894394d0b51
+      operationId: nine.user.reset.object
+      description: ''
     parameters:
       - schema:
           type: string
@@ -151,6 +332,11 @@ paths:
         required: true
       - schema:
           type: string
+          enum:
+            - profile
+            - locations
+            - activity
+            - link_expire
         name: object
         in: path
         required: true
@@ -162,7 +348,21 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: post-e706298b-8e31-45fc-8fbc-ba3f96b86b51
+      operationId: nine.user.activity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                id:
+                  type: string
+                type:
+                  type: string
+                context:
+                  type: object
     parameters:
       - schema:
           type: string
@@ -199,7 +399,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-bd334e2a-8013-4219-97ab-96cf8af5654d
+      operationId: nine.user.rating.get
       tags:
         - Rating Management
     parameters:
@@ -217,7 +417,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-938d7f6d-ce64-4c6e-90a4-446434938e81
+      operationId: nine.user.preference.get
     post:
       summary: Set user preferences
       tags: []
@@ -240,7 +440,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-47ae7b98-a4b6-4066-ab07-561b189e41f0
+      operationId: nine.user.tracker.get
     parameters:
       - schema:
           type: string
@@ -270,7 +470,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-f47e45c4-8c9c-4603-b778-3e06e03c6e6c
+      operationId: nine.tracker.get
     parameters:
       - schema:
           type: string
@@ -292,7 +492,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: post-7cace0c2-3344-4f7e-84cf-038ab9f7641c
+      operationId: nine.event.rate
     parameters:
       - schema:
           type: string
@@ -322,7 +522,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-8ba31d55-f6d1-4964-ae80-9f5012e5c5a8
+      operationId: nine.event.trailer
     parameters:
       - schema:
           type: string
@@ -346,7 +546,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-2edd8aa8-0958-49b8-a730-679a4ae1b368
+      operationId: nine.event.info
     parameters:
       - schema:
           type: string
@@ -370,7 +570,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: get-e798b69f-50cb-40b5-a6d6-a6ed3656ffe8
+      operationId: nine.event.gallery
     parameters:
       - schema:
           type: string
