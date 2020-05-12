@@ -869,8 +869,8 @@ paths:
 components:
   schemas: {}
   securitySchemes:
-    Autorization:
-      name: Autorization
+    Authorization:
+      name: Authorization
       type: apiKey
       in: header
     X-AppKey:
