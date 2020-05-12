@@ -280,6 +280,8 @@ paths:
               required:
                 - token
                 - password
+      security:
+        - X-AppKey: []
     parameters:
       - schema:
           type: string
