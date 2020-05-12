@@ -32,7 +32,7 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.locations
+      operationId: nine.locations.get
       parameters: []
     parameters:
       - schema:
@@ -295,7 +295,6 @@ paths:
         '200':
           description: OK
       operationId: nine.user.login
-      requestBody: {}
       parameters:
         - schema:
             type: string
