@@ -589,7 +589,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.preference.post
+      operationId: user.preference.post
       requestBody:
         content:
           application/json:
