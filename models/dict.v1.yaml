@@ -1,0 +1,8 @@
+title: dict
+type: object
+schema:
+  anyOf:
+    - string
+    - integer
+    - object
+    - array

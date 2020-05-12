@@ -14,6 +14,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.genres
       description: ''
       parameters:
@@ -32,7 +37,12 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.locations.get
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.user.locations.get_all
       parameters: []
     parameters:
       - schema:
@@ -48,6 +58,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: post-2aa4db27-aba6-4b87-96ae-9b34f7ee9404
       requestBody:
         content:
@@ -204,6 +219,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.collection.info
     parameters:
       - schema:
@@ -220,6 +240,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.lookup
       parameters:
         - schema:
@@ -234,6 +259,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.lookup_id
       parameters:
         - schema:
@@ -256,6 +286,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.user.password.reset_init
       security:
         - X-AppKey: []
@@ -266,6 +301,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.user.password.reset_complete
       requestBody:
         content:
@@ -296,7 +336,12 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.user.login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.user.get
       parameters:
         - schema:
             type: string
@@ -312,10 +357,7 @@ paths:
       summary: Register user
       tags:
         - User Management
-      responses:
-        '201':
-          description: Created
-      operationId: nine.user.register
+      operationId: nine.user.post
       requestBody:
         content:
           application/json:
@@ -332,12 +374,25 @@ paths:
         description: ''
       security:
         - X-AppKey: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
     put:
       summary: Update user
-      operationId: nine.user.update
+      operationId: nine.user.put
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       requestBody:
         content:
           application/json:
@@ -364,6 +419,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.user.logout
       description: ''
     parameters:
@@ -381,6 +441,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.user.reset.object
       description: ''
     parameters:
@@ -408,7 +473,12 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.user.activity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.user.activity.post
       requestBody:
         content:
           application/json:
@@ -438,6 +508,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.taste.get
     post:
       summary: Set user tastes
@@ -446,7 +521,19 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.taste.set
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.taste.post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../models/taste.v1.yaml
     parameters:
       - schema:
           type: string
@@ -460,6 +547,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.user.rating.get
       tags:
         - Rating Management
@@ -478,6 +570,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.user.preference.get
     post:
       summary: Set user preferences
@@ -486,7 +583,41 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.user.preference.set
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.user.preference.post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                kvs:
+                  type: object
+                  additionalProperties:
+                    anyOf:
+                      - type: string
+                      - type: integer
+                      - type: object
+                      - type: array
+                locations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: '^([A-Fa-f0-9]){24}$'
+                      selected:
+                        type: boolean
+                      is_extra:
+                        type: boolean
+                        description: default value is given from GET request
+        description: ''
+      description: ''
     parameters:
       - schema:
           type: string
@@ -502,7 +633,12 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.user.tracker.get
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.user.tracker.get_all
     parameters:
       - schema:
           type: string
@@ -518,7 +654,32 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.tracker.create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.tracker.post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                id:
+                  type: string
+                  pattern: '^([A-Fa-f0-9]){24}$'
+                type:
+                  type: string
+                  enum:
+                    - event
+                    - odevent
+              required:
+                - name
+                - id
+                - type
     delete:
       summary: Delete user tracker
       tags:
@@ -526,6 +687,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.tracker.delete
     get:
       summary: Get user tracker
@@ -534,7 +700,13 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.tracker.get
+      description: ''
     parameters:
       - schema:
           type: string
@@ -556,7 +728,12 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.event.rate
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.event.rate.post
       requestBody:
         content:
           application/json:
@@ -610,7 +787,12 @@ paths:
       responses:
         '200':
           description: OK
-      operationId: nine.event.trailer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: nine.event.trailer.get_one
     parameters:
       - schema:
           type: string
@@ -634,6 +816,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.event.info
     parameters:
       - schema:
@@ -658,6 +845,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: nine.event.gallery
     parameters:
       - schema:

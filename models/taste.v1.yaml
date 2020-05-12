@@ -1,0 +1,20 @@
+title: taste
+type: object
+properties:
+  id:
+    type: string
+  name:
+    type: string
+  key:
+    type: string
+  type:
+    type: string
+  value:
+    type: string
+    enum:
+      - sometimes
+      - often
+      - never
+required:
+  - id
+  - value
