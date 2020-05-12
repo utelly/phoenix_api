@@ -19,7 +19,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.genres
+      operationId: genre.get
       description: ''
       parameters:
         - schema:
@@ -42,8 +42,9 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.locations.get_all
+      operationId: user.location.get
       parameters: []
+      description: ''
     parameters:
       - schema:
           type: string
@@ -63,7 +64,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: post-2aa4db27-aba6-4b87-96ae-9b34f7ee9404
+      operationId: search.search
       requestBody:
         content:
           application/json:
@@ -105,12 +106,12 @@ paths:
                     method:
                       oneOf:
                         - properties:
-                            '':
+                            name:
                               type: string
                               enum:
                                 - any
                           required:
-                            - ''
+                            - name
                         - properties:
                             name:
                               type: string
@@ -224,7 +225,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.collection.info
+      operationId: collection.info
     parameters:
       - schema:
           type: string
@@ -245,7 +246,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.lookup
+      operationId: lookup.get_by_term
       parameters:
         - schema:
             type: string
@@ -264,7 +265,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.lookup_id
+      operationId: lookup.get_by_id
       parameters:
         - schema:
             type: string
@@ -291,7 +292,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.password.reset_init
+      operationId: user.password.reset_init
       security:
         - X-AppKey: []
     post:
@@ -306,7 +307,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.password.reset_complete
+      operationId: user.password.reset_complete
       requestBody:
         content:
           application/json:
@@ -341,7 +342,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.get
+      operationId: user.get
       parameters:
         - schema:
             type: string
@@ -357,7 +358,7 @@ paths:
       summary: Register user
       tags:
         - User Management
-      operationId: nine.user.post
+      operationId: user.post
       requestBody:
         content:
           application/json:
@@ -384,7 +385,7 @@ paths:
                 properties: {}
     put:
       summary: Update user
-      operationId: nine.user.put
+      operationId: user.put
       responses:
         '200':
           description: OK
@@ -424,7 +425,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.logout
+      operationId: user.logout
       description: ''
     parameters:
       - schema:
@@ -446,7 +447,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.reset.object
+      operationId: user.reset.object
       description: ''
     parameters:
       - schema:
@@ -478,7 +479,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.activity.post
+      operationId: user.activity.post
       requestBody:
         content:
           application/json:
@@ -513,7 +514,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.taste.get
+      operationId: taste.get
     post:
       summary: Set user tastes
       tags:
@@ -526,7 +527,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.taste.post
+      operationId: taste.post
       requestBody:
         content:
           application/json:
@@ -552,7 +553,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.rating.get
+      operationId: user.rating.get
       tags:
         - Rating Management
     parameters:
@@ -575,7 +576,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.preference.get
+      operationId: user.preference.get
     post:
       summary: Set user preferences
       tags:
@@ -638,7 +639,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.user.tracker.get_all
+      operationId: user.tracker.get
     parameters:
       - schema:
           type: string
@@ -659,7 +660,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.tracker.post
+      operationId: tracker.post
       requestBody:
         content:
           application/json:
@@ -692,7 +693,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.tracker.delete
+      operationId: tracker.delete
     get:
       summary: Get user tracker
       tags:
@@ -705,7 +706,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.tracker.get
+      operationId: tracker.get
       description: ''
     parameters:
       - schema:
@@ -733,7 +734,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.event.rate.post
+      operationId: event.rate.post
       requestBody:
         content:
           application/json:
@@ -792,7 +793,8 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.event.trailer.get_one
+      operationId: event.trailer.get
+      description: ''
     parameters:
       - schema:
           type: string
@@ -821,7 +823,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.event.info
+      operationId: event.info
     parameters:
       - schema:
           type: string
@@ -850,7 +852,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: nine.event.gallery
+      operationId: event.gallery.get
     parameters:
       - schema:
           type: string
@@ -878,5 +880,5 @@ components:
       type: apiKey
       in: header
 security:
-  - Autorization: []
+  - Authorization: []
   - X-AppKey: []
