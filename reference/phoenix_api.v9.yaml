@@ -2778,6 +2778,11 @@ paths:
               schema:
                 type: object
                 properties: {}
+              examples:
+                '1':
+                  value:
+                    status_code: 200
+                    variant: utellygn
       operationId: user.password.reset_init
       security:
         - X-AppKey: []
@@ -2793,6 +2798,11 @@ paths:
               schema:
                 type: object
                 properties: {}
+              examples:
+                '1':
+                  value:
+                    status_code: 200
+                    variant: utellygn
       operationId: user.password.reset_complete
       requestBody:
         content:
@@ -2807,6 +2817,11 @@ paths:
               required:
                 - token
                 - password
+            examples:
+              '1':
+                value:
+                  token: wiefjeowwefiwoe
+                  password: mypassword
       security:
         - X-AppKey: []
     parameters:
@@ -2936,6 +2951,11 @@ paths:
               schema:
                 type: object
                 properties: {}
+              examples:
+                '1':
+                  value:
+                    status_code: 200
+                    variant: utellygn
       operationId: user.reset.object
       description: ''
     parameters:
@@ -2961,8 +2981,8 @@ paths:
       tags:
         - Activity Management
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -3122,8 +3142,8 @@ paths:
       tags:
         - Tastes Management
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -4068,13 +4088,18 @@ paths:
       tags:
         - User Management
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
                 type: object
                 properties: {}
+              examples:
+                '1':
+                  value:
+                    status_code: 201
+                    variant: utellygn
       operationId: user.preference.post
       requestBody:
         content:
@@ -4143,8 +4168,8 @@ paths:
       tags:
         - Tracker Management
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -4181,8 +4206,8 @@ paths:
       summary: Create user tracker
       operationId: user.tracker.post
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -4268,8 +4293,8 @@ paths:
       tags:
         - Rating Management
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -4305,6 +4330,10 @@ paths:
                       minimum: 1
                       maximum: 5
               type: object
+            examples:
+              '1':
+                value:
+                  value: neutral
     parameters:
       - schema:
           type: string
@@ -5822,6 +5851,17 @@ paths:
               schema:
                 type: object
                 properties: {}
+              examples:
+                '1':
+                  value:
+                    status_code: 200
+                    user:
+                      id: 5ebbd2ebf7b42cb9c778ec4d
+                      type: registered
+                      key: c075b2dd173d497398907834f
+                      secure_hash: 89b5f24befbbb6d77d34a905207184f8
+                      email: edbf70fa3c845c133656f35cb4a93d2d@private.utelly.com
+                    variant: utellygn
       requestBody:
         content:
           application/json:
@@ -5838,6 +5878,12 @@ paths:
                 - email
                 - password
                 - old_password
+            examples:
+              '1':
+                value:
+                  email: keiser@utelly.com
+                  password: new_password
+                  old_password: my_password
       tags:
         - User Management
 components:
