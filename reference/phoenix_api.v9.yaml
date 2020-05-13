@@ -226,6 +226,12 @@ paths:
                 type: object
                 properties: {}
       operationId: collection.info
+      parameters:
+        - schema:
+            type: string
+            pattern: '^([A-Fa-f0-9]){24}$'
+          in: query
+          name: user
     parameters:
       - schema:
           type: string
@@ -734,7 +740,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: event.rate.post
+      operationId: user.rating.post
       requestBody:
         content:
           application/json:
@@ -824,6 +830,12 @@ paths:
                 type: object
                 properties: {}
       operationId: event.info
+      parameters:
+        - schema:
+            type: string
+            pattern: '^([A-Fa-f0-9]){24}$'
+          in: query
+          name: user
     parameters:
       - schema:
           type: string
@@ -853,6 +865,12 @@ paths:
                 type: object
                 properties: {}
       operationId: event.gallery.get
+      parameters:
+        - schema:
+            type: string
+            pattern: '^([A-Fa-f0-9]){24}$'
+          in: query
+          name: user
     parameters:
       - schema:
           type: string
