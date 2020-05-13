@@ -24,8 +24,8 @@ paths:
                   value:
                     status_code: 200
                     genres:
-                      - id: 5be1f15fd3b181002fe3c578
-                        name: "TV Shows,\_International TV Shows,\_Korean TV Shows,\_Romantic TV Shows,\_TV Comedies,\_TV Dramas,\_TV Dramedies"
+                      - id: 551155b1ebb7f964c26ae29c
+                        name: Crime Documentaries
                         hypernyms: []
                         hyponyms: []
                         synonyms: []
