@@ -5833,6 +5833,8 @@ paths:
                 - email
                 - password
                 - old_password
+      tags:
+        - User Management
 components:
   schemas: {}
   securitySchemes:
