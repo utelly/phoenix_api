@@ -654,40 +654,31 @@ paths:
         name: user_guid
         in: path
         required: true
-  '/user/{user_guid}/tracker/{tracker_id}':
     post:
       summary: Create user tracker
-      tags:
-        - Tracker Management
+      operationId: user.tracker.post
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      operationId: tracker.post
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                name:
-                  type: string
                 id:
                   type: string
                   pattern: '^([A-Fa-f0-9]){24}$'
+                name:
+                  type: string
                 type:
                   type: string
                   enum:
-                    - event
                     - odevent
-              required:
-                - name
-                - id
-                - type
+                    - event
+      tags:
+        - Tracker Management
+  '/user/{user_guid}/tracker/{tracker_id}':
     delete:
       summary: Delete user tracker
       tags:
@@ -701,20 +692,6 @@ paths:
                 type: object
                 properties: {}
       operationId: tracker.delete
-    get:
-      summary: Get user tracker
-      tags:
-        - Tracker Management
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      operationId: tracker.get
-      description: ''
     parameters:
       - schema:
           type: string
