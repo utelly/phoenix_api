@@ -632,7 +632,7 @@ paths:
         name: user_guid
         in: path
         required: true
-  '/user/{user_guid}/trackers':
+  '/user/{user_guid}/tracker':
     get:
       summary: Get user trackers
       tags:
@@ -646,6 +646,7 @@ paths:
                 type: object
                 properties: {}
       operationId: user.tracker.get
+      description: ''
     parameters:
       - schema:
           type: string
