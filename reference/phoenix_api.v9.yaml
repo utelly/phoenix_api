@@ -2786,44 +2786,6 @@ paths:
       operationId: user.password.reset_init
       security:
         - X-AppKey: []
-    post:
-      summary: Reset password confirm
-      tags:
-        - User Management
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                '1':
-                  value:
-                    status_code: 200
-                    variant: utellygn
-      operationId: user.password.reset_complete
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
-                password:
-                  type: string
-              required:
-                - token
-                - password
-            examples:
-              '1':
-                value:
-                  token: wiefjeowwefiwoe
-                  password: mypassword
-      security:
-        - X-AppKey: []
     parameters:
       - schema:
           type: string
@@ -5886,6 +5848,39 @@ paths:
                   old_password: my_password
       tags:
         - User Management
+  /reset/password:
+    post:
+      summary: Reset password confirm
+      operationId: password.reset_confirm
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                '1':
+                  value:
+                    status_code: 200
+                    variant: utellygn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+            examples:
+              '1':
+                value:
+                  token: wiefjeowwefiwoe
+                  password: mypassword
+      description: ''
 components:
   schemas: {}
   securitySchemes:
