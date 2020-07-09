@@ -5881,6 +5881,7 @@ paths:
                   token: wiefjeowwefiwoe
                   password: mypassword
       description: ''
+      security: []
 components:
   schemas: {}
   securitySchemes:
