@@ -5882,6 +5882,8 @@ paths:
                   password: mypassword
       description: ''
       security: []
+      tags:
+        - User Management
 components:
   schemas: {}
   securitySchemes:
