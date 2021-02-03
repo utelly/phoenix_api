@@ -5955,7 +5955,7 @@ paths:
                             name: any
                     q: game of thrones
                     status_code: 200
-                    variant: katch
+                    variant: utelly
       operationId: get-search-suggestion
       parameters:
         - schema:
