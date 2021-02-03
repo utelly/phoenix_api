@@ -5892,7 +5892,7 @@ paths:
       security: []
       tags:
         - User Management
-  /search/suggestion:
+  '/user/{user_guid}/search/suggestion':
     get:
       summary: Search Suggestions
       tags:
@@ -5966,6 +5966,12 @@ paths:
           name: q
           description: query string from user input
       description: Endpoint for retrieving search suggestions
+    parameters:
+      - schema:
+          type: string
+        name: user_guid
+        in: path
+        required: true
 components:
   schemas: {}
   securitySchemes:
