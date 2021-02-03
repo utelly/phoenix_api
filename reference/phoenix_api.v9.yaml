@@ -2751,6 +2751,8 @@ paths:
                     id: tt0944947
                     status_code: 200
                     variant: utellygn
+                example-2:
+                  value: {}
       operationId: lookup.get_by_id
       parameters:
         - schema:
@@ -5890,6 +5892,107 @@ paths:
       security: []
       tags:
         - User Management
+  /search/suggestion:
+    get:
+      summary: Search Suggestions
+      tags:
+        - Search Management
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  suggestions:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - context
+                        - order
+                      properties:
+                        context:
+                          type: string
+                          minLength: 1
+                        parameters:
+                          type: object
+                          properties:
+                            search_term:
+                              type: string
+                              minLength: 1
+                            categories:
+                              type: array
+                              items:
+                                required: []
+                                properties: {}
+                          required:
+                            - search_term
+                            - categories
+                        payload:
+                          type: object
+                          properties:
+                            method:
+                              type: object
+                              properties:
+                                args:
+                                  type: object
+                                  properties: {}
+                                  required: []
+                                name:
+                                  type: string
+                                  minLength: 1
+                              required:
+                                - args
+                                - name
+                          required:
+                            - method
+                        order:
+                          type: string
+                          minLength: 1
+                  q:
+                    type: string
+                    minLength: 1
+                  status_code:
+                    type: number
+                  variant:
+                    type: string
+                    minLength: 1
+                required:
+                  - suggestions
+                  - q
+                  - status_code
+                  - variant
+              examples:
+                KM Suggestion:
+                  value:
+                    suggestions:
+                      - context: in Title
+                        parameters:
+                          search_term: game of thrones
+                          categories:
+                            - title
+                        payload:
+                          method:
+                            args: {}
+                            name: any
+                        order: km_discover
+                    q: game of thrones
+                    status_code: 200
+                    variant: katch
+      operationId: get-search-suggestion
+      parameters:
+        - schema:
+            type: string
+            example: tom cruise
+          in: query
+          required: true
+          name: q
+          description: query string from user input
+      description: Endpoint for retrieving search suggestions
 components:
   schemas: {}
   securitySchemes:
@@ -5904,3 +6007,5 @@ components:
 security:
   - Authorization: []
   - X-AppKey: []
+tags:
+  - name: Search Management
