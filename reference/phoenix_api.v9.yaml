@@ -5911,13 +5911,8 @@ paths:
                     uniqueItems: true
                     minItems: 1
                     items:
-                      required:
-                        - context
-                        - order
+                      type: object
                       properties:
-                        context:
-                          type: string
-                          minLength: 1
                         parameters:
                           type: object
                           properties:
@@ -5927,32 +5922,12 @@ paths:
                             categories:
                               type: array
                               items:
-                                required: []
-                                properties: {}
+                                type: object
                           required:
                             - search_term
                             - categories
-                        payload:
+                        search_payload:
                           type: object
-                          properties:
-                            method:
-                              type: object
-                              properties:
-                                args:
-                                  type: object
-                                  properties: {}
-                                  required: []
-                                name:
-                                  type: string
-                                  minLength: 1
-                              required:
-                                - args
-                                - name
-                          required:
-                            - method
-                        order:
-                          type: string
-                          minLength: 1
                   q:
                     type: string
                     minLength: 1
@@ -5970,16 +5945,14 @@ paths:
                 KM Suggestion:
                   value:
                     suggestions:
-                      - context: in Title
-                        parameters:
+                      - parameters:
                           search_term: game of thrones
                           categories:
                             - title
-                        payload:
+                        search_payload:
                           method:
                             args: {}
                             name: any
-                        order: km_discover
                     q: game of thrones
                     status_code: 200
                     variant: katch
