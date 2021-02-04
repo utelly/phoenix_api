@@ -5986,7 +5986,8 @@ paths:
         required: true
     get:
       summary: Get User Homepage
-      tags: []
+      tags:
+        - Search Management
       responses:
         '200':
           description: OK
