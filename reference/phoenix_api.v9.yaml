@@ -5984,6 +5984,7 @@ paths:
         name: name_of_page
         in: path
         required: true
+        description: name of valid home categories static file
     get:
       summary: Get User Homepage
       tags:
