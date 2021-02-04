@@ -5972,6 +5972,185 @@ paths:
         name: user_guid
         in: path
         required: true
+  '/user/{user_guid}/homepage/{name_of_page}':
+    parameters:
+      - schema:
+          type: string
+        name: user_guid
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: name_of_page
+        in: path
+        required: true
+    get:
+      summary: Get User Homepage
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - requirements
+                    - name
+                    - refresh_rate
+                    - display_format
+                    - data_source
+                    - allowed_filters
+                    - hero_picture
+                    - tracking_id
+                    - action
+                    - options
+                  properties:
+                    requirements:
+                      type: object
+                      properties:
+                        query_scope:
+                          type: array
+                          items:
+                            required: []
+                            properties: {}
+                      required:
+                        - query_scope
+                    name:
+                      type: string
+                      minLength: 1
+                    refresh_rate:
+                      type: number
+                    display_format:
+                      type: string
+                      minLength: 1
+                    data_source:
+                      type: string
+                      minLength: 1
+                    allowed_filters:
+                      type: object
+                      properties:
+                        filter_page:
+                          type: string
+                          minLength: 1
+                        filter_ids:
+                          type: array
+                          items:
+                            required: []
+                            properties: {}
+                      required:
+                        - filter_page
+                        - filter_ids
+                    hero_picture:
+                      type: string
+                    tracking_id:
+                      type: string
+                      minLength: 1
+                    action:
+                      type: object
+                      properties:
+                        payload:
+                          type: object
+                          properties:
+                            user:
+                              type: string
+                            scope:
+                              type: string
+                              minLength: 1
+                            order:
+                              type: string
+                              minLength: 1
+                            parameters:
+                              type: object
+                              properties:
+                                search_term:
+                                  type: string
+                                  minLength: 1
+                                categories:
+                                  type: array
+                                  items:
+                                    required: []
+                                    properties: {}
+                              required:
+                                - search_term
+                                - categories
+                            payload:
+                              type: object
+                              properties:
+                                method:
+                                  type: object
+                                  properties:
+                                    args:
+                                      type: object
+                                      properties: {}
+                                      required: []
+                                    name:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - args
+                                    - name
+                              required:
+                                - method
+                          required:
+                            - user
+                            - scope
+                            - order
+                            - parameters
+                            - payload
+                      required:
+                        - payload
+                    options:
+                      type: object
+                      properties:
+                        replace_hero_images_on_results:
+                          type: boolean
+                      required:
+                        - replace_hero_images_on_results
+              examples:
+                example-1:
+                  value:
+                    - requirements:
+                        query_scope:
+                          - odevent
+                      name: Top Recommendations
+                      refresh_rate: 15
+                      display_format: billboards
+                      data_source: browse_search
+                      allowed_filters:
+                        filter_page: browse-filters
+                        filter_ids:
+                          - browse_movies
+                      hero_picture: ''
+                      tracking_id: browse_recommend
+                      action:
+                        payload:
+                          user: ''
+                          scope: collection
+                          order: km_recommend
+                          parameters:
+                            search_term: game of thrones
+                            categories:
+                              - title
+                          payload:
+                            method:
+                              args: {}
+                              name: any
+                      options:
+                        replace_hero_images_on_results: true
+      operationId: get-user-user_guid-homepage-name_of_page
+      description: Used to retrieve homepage JSON
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: search_id
+          description: Valid search ID used to merge search into response
 components:
   schemas: {}
   securitySchemes:
